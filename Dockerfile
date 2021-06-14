@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:bionic
+FROM ghcr.io/linuxserver/baseimage-ubuntu:bionic
 
 # set version label
 ARG BUILD_DATE
@@ -35,6 +35,8 @@ RUN \
 	/app/Jackett --strip-components=1 && \
  echo "**** fix for host id mapping error ****" && \
  chown -R root:root /app/Jackett && \
+ echo "**** save docker image version ****" && \
+ echo "${VERSION}" > /etc/docker-image && \
  echo "**** cleanup ****" && \
  apt-get clean && \
  rm -rf \
